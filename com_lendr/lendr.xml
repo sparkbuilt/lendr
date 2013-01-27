@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+	<name>COM_LENDR</name>
+	<creationDate>2013-01-31</creationDate>
+	<author>Spark</author>
+	<authorEmail>info@sparkbuilt.com</authorEmail>
+	<authorUrl>http://lendr.sparkbuilt.com</authorUrl>
+	<copyright>Copyright Info</copyright>
+	<license>License Info</license>
+	<version>1.0.0</version>
+	<description>COM_LENDR_DESCRIPTION</description>
+
+	<install>
+  		<sql>
+    		<file charset="utf8" driver="mysql">install.sql</file>
+  		</sql>
+	</install>
+
+	<files folder="site">
+		<folder>assets</folder>
+		<folder>controllers</folder>
+		<folder>helpers</folder>
+		<folder>languages</folder>
+		<folder>models</folder>
+		<folder>tables</folder>
+		<folder>views</folder>
+		<filename>index.html</filename>
+		<filename>lendr.php</filename>
+		<filename>router.php</filename>
+	</files> 
+
+	<scriptfile>install.php</scriptfile>
+
+	<languages folder="site">
+		<language tag="en-GB">languages/en-GB/en-GB.com_lendr.ini</language>
+	</languages>
+
+	<administration>
+		<menu link="option=com_lendr" img="components/com_lendr/assets/images/lendr_icon.png">COM_LENDR</menu>
+		<submenu>
+			<menu view="settings" img="components/com_lendr/assets/images/settings_icon.png" 
+				alt="LENDR/Settings">COM_LENDR_SETTINGS</menu>
+		</submenu>
+
+		<files folder="admin">
+			<folder>controllers</folder>
+			<folder>languages</folder>
+			<folder>models</folder>
+			<folder>views</folder>
+			<filename>lendr.php</filename>
+			<filename>index.html</filename>
+			<filename>install.mysql.sql</filename>
+		</files>  
+
+		<languages folder="admin">
+			<language tag="en-GB">languages/en-GB/en-GB.com_lendr.ini</language>
+			<language tag="en-GB">languages/en-GB/en-GB.com_lendr.sys.ini</language>
+		</languages>
+
+	</administration>
+	
+</extension>
