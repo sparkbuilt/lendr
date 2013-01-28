@@ -12,7 +12,7 @@
 
 	<install>
   		<sql>
-    		<file charset="utf8" driver="mysql">install.sql</file>
+    		<file charset="utf8" driver="mysql">install.mysql.sql</file>
   		</sql>
 	</install>
 
