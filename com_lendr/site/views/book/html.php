@@ -1,6 +1,6 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class LendrViewBookHtml extends JViewHtml
+class LendrViewsBookHtml extends JViewHtml
 {
   function render()
   {

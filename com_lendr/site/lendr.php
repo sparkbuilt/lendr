@@ -21,7 +21,7 @@ $app = JFactory::getApplication();
 $controller = $app->input->get('controller','default');
  
 // Create the controller
-$classname  = 'LendrController'.ucwords($controller);
+$classname  = 'LendrControllers'.ucwords($controller);
 $controller = new $classname();
  
 // Perform the Request task

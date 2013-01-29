@@ -2,7 +2,7 @@
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class LendrModelDefault extends JModelBase
+class LendrModelsDefault extends JModelBase
 {
   var $__state_set  = null;
   var $_total       = null;

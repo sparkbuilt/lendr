@@ -2,7 +2,7 @@
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class LendrModelBook extends LendrModelDefault
+class LendrModelsBook extends LendrModelsDefault
 {
   function __construct()
   {

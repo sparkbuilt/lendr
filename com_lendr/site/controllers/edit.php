@@ -2,7 +2,7 @@
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class LendrControllerEdit extends LendrControllerDefault
+class LendrControllersEdit extends LendrControllersDefault
 {
   function execute()
   {
