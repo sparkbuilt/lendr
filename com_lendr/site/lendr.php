@@ -9,8 +9,8 @@ jimport( 'joomla.session.session' );
 JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 //load classes
-JLoader::registerPrefix('LendrController', JPATH_COMPONENT.'/controllers');
- 
+JLoader::registerPrefix('Lendr', JPATH_COMPONENT);
+
 //Load plugins
 JPluginHelper::importPlugin('lendr');
  

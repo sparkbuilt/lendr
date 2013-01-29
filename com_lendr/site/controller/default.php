@@ -4,6 +4,7 @@ class LendrControllerDefault extends JControllerBase
 {
   public function execute()
   {
+
     // Get the application
     $app = $this->getApplication();
  
@@ -36,4 +37,5 @@ class LendrControllerDefault extends JControllerBase
  
     return true;
   }
+
 }

@@ -11,7 +11,7 @@ class LendrViewBookHtml extends JViewHtml
  
     //retrieve task list from model
     $model = new LendrModelBook();
- 
+
     $this->book = $model->getBook($id,$view,FALSE);
     
     //display

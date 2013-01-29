@@ -18,12 +18,12 @@
 
 	<files folder="site">
 		<folder>assets</folder>
-		<folder>controllers</folder>
-		<folder>helpers</folder>
-		<folder>languages</folder>
-		<folder>models</folder>
-		<folder>tables</folder>
-		<folder>views</folder>
+		<folder>controller</folder>
+		<folder>helper</folder>
+		<folder>language</folder>
+		<folder>model</folder>
+		<folder>table</folder>
+		<folder>view</folder>
 		<filename>index.html</filename>
 		<filename>lendr.php</filename>
 		<filename>router.php</filename>
@@ -43,10 +43,10 @@
 		</submenu>
 
 		<files folder="admin">
-			<folder>controllers</folder>
-			<folder>languages</folder>
-			<folder>models</folder>
-			<folder>views</folder>
+			<folder>controller</folder>
+			<folder>language</folder>
+			<folder>model</folder>
+			<folder>view</folder>
 			<filename>lendr.php</filename>
 			<filename>index.html</filename>
 			<filename>install.mysql.sql</filename>
