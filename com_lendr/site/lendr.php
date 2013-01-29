@@ -7,6 +7,9 @@ jimport( 'joomla.session.session' );
  
 //load tables
 JTable::addIncludePath(JPATH_COMPONENT.'/tables');
+
+//load classes
+JLoader::registerPrefix('LendrController', JPATH_COMPONENT.'/controllers');
  
 //Load plugins
 JPluginHelper::importPlugin('lendr');
@@ -15,12 +18,10 @@ JPluginHelper::importPlugin('lendr');
 $app = JFactory::getApplication();
  
 // Require specific controller if requested
-if($controller = $app->input->get('controller','default')) {
-  require_once (JPATH_COMPONENT.'/controllers/'.$controller.'.php');
-}
+$controller = $app->input->get('controller','default');
  
 // Create the controller
-$classname  = 'LendrController'.$controller;
+$classname  = 'LendrController'.ucwords($controller);
 $controller = new $classname();
  
 // Perform the Request task

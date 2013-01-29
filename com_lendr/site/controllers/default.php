@@ -8,7 +8,7 @@ class LendrControllerDefault extends JControllerBase
     $app = $this->getApplication();
  
     // Get the document object.
-    $document     = $app->getDocument();
+    $document     = JFactory::getDocument();
  
     $viewName     = $app->input->getWord('view', 'dashboard');
     $viewFormat   = $document->getType();

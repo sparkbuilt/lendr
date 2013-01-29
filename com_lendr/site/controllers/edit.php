@@ -10,10 +10,8 @@ class LendrControllerEdit extends LendrControllerDefault
     $viewName = $app->input->get('view');
     $app->input->set('layout','edit');
     $app->input->set('view', $viewName);
-        
-    $view = LendrHelperView::getView($viewName,'edit','html');
- 
+     
     //display view
-    echo $view->render();
+    return parent::execute();
   }
 }
