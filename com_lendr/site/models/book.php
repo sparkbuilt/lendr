@@ -23,12 +23,7 @@ class LendrModelsBook extends LendrModelsDefault
 
   function __construct()
   {
-    $app = JFactory::getApplication();
 
-    $this->_book_id = $app->input->get('book_id', null);
-    $this->_user_id = $app->input->get('user_id', null);
-    $this->_library_id = $app->input->('library_id', null);
-    
     parent::__construct();       
   }
  
@@ -74,7 +69,7 @@ class LendrModelsBook extends LendrModelsDefault
       $query->where('b.library_id = ' . (int) $this->_library_id);
     }
 
-    $query->where('b.published = '. (int) $this->_published);
+    $query->where('b.published = ' . (int) $this->_published);
 
     return $query;
   }

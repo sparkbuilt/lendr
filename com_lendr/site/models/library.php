@@ -6,9 +6,9 @@ class LendrModelsLibrary extends LendrModelsDefault
 {
 
   //Define class level variables
-  private $_library_id  = null;
-  private $_user_id     = null;
-  private $_published   = 1;
+  var $_library_id  = null;
+  var $_user_id     = null;
+  var $_published   = 1;
 
   function __construct()
   {
@@ -17,6 +17,34 @@ class LendrModelsLibrary extends LendrModelsDefault
     $this->_user_id = $app->input->get('user_id',null);
 
     parent::__construct();       
+  }
+
+ function get() 
+  {
+    $library = parent::get(); 
+
+    $bookModel = new LendrModelsBook();
+    $library->books = $bookModel->listItems();
+
+    return $library;
+  }
+
+  function listItems()
+  {
+    $bookModel = new LendrModelsBook();
+    $libraries = parent::listItems();
+
+    $n = count($libraries);
+
+    for($i=0;$i<$n;$i++)
+    {
+      $library = $libraries[$i];
+      
+      $bookModel->_library_id = $library->id;
+      $library->books = $bookModel->listItems();
+    }
+
+    return $libraries;
   }
 
   function buildQuery()
@@ -36,35 +64,6 @@ class LendrModelsLibrary extends LendrModelsDefault
     return $query;
   }
 
-  function get() 
-  {
-    $library = parent::get();
-    
-    $bookModel = new LendrModelsBook();
-    $library->books = $bookModel->list();
-
-    return $library;
-  }
-
-  function list()
-  {
-
-    $bookModel = new LendrModelsBook();
-
-    $libraries = parent::list();
-
-    $n = count($libraries);
-    
-    for($i=0;$i<$n;$i++)
-    {
-      $library = $libraries[$i];
-      
-      $bookModel->_library_id = $library->id;
-      $library->books = $bookModel->list();
-    }
-
-    return $libraries;
-  }
 
   function buildWhere(&$query)
   {

@@ -4,6 +4,7 @@ class LendrViewsProfileHtml extends JViewHtml
 {
   function render()
   {
+
     //retrieve task list from model
     $profileModel = new LendrModelsProfile();
     $this->profile = $profileModel->get();

@@ -24,7 +24,7 @@ class LendrControllersDefault extends JControllerBase
     $viewClass  = 'LendrViews' . ucfirst($viewName) . ucfirst($viewFormat);
     $modelClass = 'LendrModels' . ucfirst($viewName);
 
-    if (class_exists($modelClass)===false)
+    if (false === class_exists($modelClass))
     {
       $modelClass = 'LendrModelsDefault';
     }

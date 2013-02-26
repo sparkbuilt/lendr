@@ -6,8 +6,8 @@ class LendrModelsProfile extends LendrModelsDefault
 {
 
   //Define class level variables
-  var $_profile_id  = null;
-  var $_user_id     = null;
+  private $_profile_id  = null;
+  private $_user_id     = null;
 
   function __construct()
   {
@@ -54,7 +54,8 @@ class LendrModelsProfile extends LendrModelsDefault
   {
     $profile = parent::get();
 
-    $libraryModel = new LendrModelsLibrary()
+    $libraryModel = new LendrModelsLibrary();
+
     $libraryModel->set('_user_id',$this->_user_id);
     $profile->library = $libraryModel->get();
 
