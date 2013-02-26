@@ -11,10 +11,10 @@ class LendrControllersDefault extends JControllerBase
     // Get the document object.
     $document     = JFactory::getDocument();
  
-    $viewName     = $app->input->getWord('view', 'dashboard');
+    $viewName     = $app->input->getWord('view', 'profile');
     $viewFormat   = $document->getType();
     $layoutName   = $app->input->getWord('layout', 'default');
- 
+
     $app->input->set('view', $viewName);
  
     // Register the layout paths for the view
@@ -23,12 +23,12 @@ class LendrControllersDefault extends JControllerBase
  
     $viewClass  = 'LendrViews' . ucfirst($viewName) . ucfirst($viewFormat);
     $modelClass = 'LendrModels' . ucfirst($viewName);
- 
-    if (false === class_exists($modelClass))
+
+    if (class_exists($modelClass)===false)
     {
       $modelClass = 'LendrModelsDefault';
     }
- 
+
     $view = new $viewClass(new $modelClass, $paths);
 
     $view->setLayout($layoutName);

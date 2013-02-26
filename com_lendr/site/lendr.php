@@ -1,7 +1,7 @@
 <?php // No direct access
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
- 
+
 //sessions
 jimport( 'joomla.session.session' );
  
@@ -19,7 +19,7 @@ $app = JFactory::getApplication();
  
 // Require specific controller if requested
 $controller = $app->input->get('controller','default');
- 
+
 // Create the controller
 $classname  = 'LendrControllers'.ucwords($controller);
 $controller = new $classname();

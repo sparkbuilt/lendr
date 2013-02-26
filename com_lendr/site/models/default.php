@@ -45,6 +45,38 @@ class LendrModelsDefault extends JModelBase
  
     return $previous;
   }
+
+  /**
+  * Build a query and where and return an object
+  *
+  */
+  public function get()
+  {
+    $db = JFactory::getDBO();
+
+    $query = $this->buildQuery();
+    $this->buildWhere($query);
+    $db->setQuery($query);
+
+    $item = $db->loadObject();
+
+    return $item;
+  }
+
+  /**
+  * Build query and where for protected _getList function and return a list
+  *
+  * @return array An array of results.
+  */
+  public function list()
+  {
+    $query = $this->buildQuery();    
+    $this->buildWhere($query);
+    
+    $list = $this->_getList($query, $this->limitstart, $this->limit);
+
+    return $list;
+  }
  
   /**
   * Gets an array of objects from the results of database query.
