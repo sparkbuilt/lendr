@@ -17,6 +17,42 @@ class LendrModelsDefault extends JModelBase
 
     parent::__construct(); 
   }
+
+  public function store($data=null)
+  {
+
+    $data = $data ? $data : JRequest::get('post');
+    $row = JTable::getInstance($data['table'],'Table');
+
+    $date = date("Y-m-d H:i:s");
+
+     // Bind the form fields to the table
+    if (!$row->bind($data))
+    {
+        return false;
+    }
+
+    $row->modified = $date;
+    if ( !$row->created )
+    {
+      $row->created = $date;
+    }
+
+    // Make sure the record is valid
+    if (!$row->check())
+    {
+        return false;
+    }
+ 
+    // Store the web link table to the database
+    if (!$row->store())
+    {
+        return false;
+    }
+
+    return $row;
+
+  }
  
   /**
   * Modifies a property of the object, creating it if it does not already exist.

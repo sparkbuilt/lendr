@@ -4,7 +4,7 @@
       <a class="pull-left" href="#">
         <img class="media-object" src="http://covers.openlibrary.org/b/isbn/<?php echo $this->book->isbn; ?>-S.jpg">
       </a>
-      <div class="media-body">
+      <div id="book-row-<?php echo $this->book->book_id; ?>" class="media-body">
         <h4 class="media-heading"><?php echo $this->book->title; ?></h4>
         <span class="muted"><?php echo $this->book->author; ?></span>
         <p><?php echo $this->book->summary; ?></p>
@@ -16,7 +16,7 @@
   </td>
   <td class="small">
     <div class="btn-group">
-      <button class="btn"><?php echo JText::_('COM_LENDR_BORROW'); ?></button>
+      <a href="javascript:void(0);" onclick="borrowBookModal(<?php echo $this->book->book_id; ?>);" class="btn"><?php echo JText::_('COM_LENDR_BORROW'); ?></a>
       <button class="btn dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span>
       </button>

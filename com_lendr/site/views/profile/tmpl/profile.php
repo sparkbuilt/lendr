@@ -11,7 +11,7 @@
       <dt><?php echo JText::_('COM_LENDR_PROFILE_JOIN'); ?></dt>
       <dd><?php echo JHtml::_('date', $this->profile->registerDate, JText::_('DATE_FORMAT_LC3')); ?></dd>
       <dt><?php echo JText::_('COM_LENDR_PROFILE_BIO'); ?></dt>
-      <dd><?php echo $this->profile->details['aboutme']; ?></dd>
+      <dd><?php if(isset($this->profile->details['aboutme'])) echo $this->profile->details['aboutme']; ?></dd>
     </dl>
   </div>
 </div>
@@ -29,12 +29,7 @@
         <a href="#newBookModal" role="button" data-toggle="modal" class="btn pull-right"><i class="icon icon-pencil-2"></i> <?php echo JText::_('COM_LENDR_ADD_BOOK'); ?></a>
       <?php } ?>
       <h2><?php echo JText::_('COM_LENDR_LIBRARY'); ?></h2>
-      <table cellpadding="0" cellspacing="0" width="100%" class="table table-striped table-bordered">
-        <?php for($i=0, $n = count($this->profile->library->books);$i<$n;$i++) { 
-                $this->_bookListView->book = $this->profile->library->books[$i];
-                echo $this->_bookListView->render();
-        } ?>
-      </table>
+      <?php echo $this->_libraryView->render(); ?>
     </div>
     <div class="tab-pane" id="wishlistTab">
       <h2><?php echo JText::_('COM_LENDR_WISHLIST'); ?></h2>

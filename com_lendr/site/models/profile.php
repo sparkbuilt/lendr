@@ -11,11 +11,20 @@ class LendrModelsProfile extends LendrModelsDefault
   function __construct()
   {
 
+    $app = JFactory::getApplication();
+
     //If no User ID is set to current logged in user
-    if(is_null($this->_user_id)) {
+    if ( $app->input->get('profile_id') )
+    {
+      $this->_user_id = $app->input->get('profile_id');
+    }
+    if(is_null($this->_user_id))
+    {
       $user = JFactory::getUser();
       $this->_user_id = $user->get('id');
     }
+
+    
 
     parent::__construct();       
   }
@@ -45,8 +54,10 @@ class LendrModelsProfile extends LendrModelsDefault
 
   function getItem()
   {
+
     $profile = JFactory::getUser($this->_user_id);
-    $profile->details = JUserHelper::getProfile($this->_user_id)->profile;
+    $userDetails = JUserHelper::getProfile($this->_user_id);
+    $profile->details =  isset($userDetails->profile) ? $userDetails->profile : array();
 
     $libraryModel = new LendrModelsLibrary();
     $libraryModel->set('_user_id',$this->_user_id);
