@@ -13,7 +13,7 @@ class LendrControllersDefault extends JControllerBase
  
     $viewName     = $app->input->getWord('view', 'profile');
     $viewFormat   = $document->getType();
-    $layoutName   = $app->input->getWord('layout', 'default');
+    $layoutName   = $app->input->getWord('layout', 'list');
 
     $app->input->set('view', $viewName);
  

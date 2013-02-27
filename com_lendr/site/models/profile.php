@@ -6,8 +6,7 @@ class LendrModelsProfile extends LendrModelsDefault
 {
 
   //Define class level variables
-  private $_profile_id  = null;
-  private $_user_id     = null;
+  var $_user_id     = null;
 
   function __construct()
   {
@@ -21,49 +20,41 @@ class LendrModelsProfile extends LendrModelsDefault
     parent::__construct();       
   }
  
-  function buildQuery()
+  protected function _buildQuery()
   {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select("p.bio, p.avatar");
-    $query->from("#__lendr_profiles as p");
+    $query->select("u.id, u.username, u.name, u.email, u.registerDate");
+    $query->from("#__users as u");
 
-    $query->select("u.username, u.name, u.email");
-    $query->leftjoin("#__users as u ON u.id = p.user_id");
+    $query->select("COUNT(b.book_id) as totalBooks");
+    $query->leftjoin("#__lendr_books as b on b.user_id = u.id");
 
-    return $query;
-  }
-
-  function buildWhere($query)
-  {
-    if(is_numeric($this->_user_id)) 
-    {
-      $query->where('p.user_id = ' . (int) $this->_user_id);
-    }
-
-    if(is_numeric($this->_profile_id)) 
-    {
-      $query->where('p.profile_id = ' . (int) $this->_profile_id);
-    }
+    $query->select("COUNT(r.review_id) as totalReviews");
+    $query->leftjoin("#__lendr_reviews as r on r.user_id = u.id");
 
     return $query;
   }
 
-  function get()
+  protected function _buildWhere($query)
   {
-    $profile = parent::get();
+
+    return $query;
+  }
+
+  function getItem()
+  {
+    $profile = JFactory::getUser($this->_user_id);
+    $profile->details = JUserHelper::getProfile($this->_user_id)->profile;
 
     $libraryModel = new LendrModelsLibrary();
-
     $libraryModel->set('_user_id',$this->_user_id);
-    $profile->library = $libraryModel->get();
+    $profile->library = $libraryModel->getItem();
+
+    $profile->isMine = JFactory::getUser()->id == $profile->id ? TRUE : FALSE;
 
     return $profile;
   }
- 
-  function populateState()
-  {
 
-  }
 }

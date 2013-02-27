@@ -8,17 +8,17 @@ class LendrModelsBook extends LendrModelsDefault
   /**
   * Protected fields
   **/
-  protected $_book_id     = null;
+  var $_book_id     = null;
   
-  protected $_user_id     = null;
+  var $_user_id     = null;
   
-  protected $_library_id  = null;
+  var $_library_id  = null;
 
-  protected $_pagination  = null;
+  var $_pagination  = null;
 
-  protected $_total       = null;
+  var $_total       = null;
 
-  protected $_published   = 1;
+  var $_published   = 1;
 
 
   function __construct()
@@ -33,12 +33,12 @@ class LendrModelsBook extends LendrModelsDefault
   *
   *
   */
-  function buildQuery()
+  protected function _buildQuery()
   {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('b.book_id, b.isbn, b.title, b.summary, b.pages, b.image, 
+    $query->select('b.book_id, b.isbn, b.title, b.author, b.summary, b.pages, 
                     b.publish_date, b.lent, b.lent_date, b.due_date');
     $query->from('#__lendr_books as b');
 
@@ -51,7 +51,7 @@ class LendrModelsBook extends LendrModelsDefault
   * @return   object  Query object
   *
   */
-  function buildWhere(&$query)
+  protected function _buildWhere(&$query)
   {
 
     if(is_numeric($this->_book_id)) 

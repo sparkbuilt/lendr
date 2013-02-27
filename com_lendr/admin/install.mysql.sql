@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS `#__lendr_books` (
   `user_id` int(11) DEFAULT NULL,
   `isbn` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
   `summary` text DEFAULT NULL,
   `pages` varchar(55) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
@@ -26,14 +27,6 @@ CREATE TABLE IF NOT EXISTS `#__lendr_libraries` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`library_id`)
-);
-
-CREATE TABLE IF NOT EXISTS `#__lendr_profiles` (
-  `profile_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `bio` text DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`profile_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `#__lendr_waitlists` (

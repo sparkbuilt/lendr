@@ -14,6 +14,8 @@ JLoader::registerPrefix('Lendr', JPATH_COMPONENT);
 //Load plugins
 JPluginHelper::importPlugin('lendr');
  
+LendrHelpersStyle::load();
+
 //application
 $app = JFactory::getApplication();
  

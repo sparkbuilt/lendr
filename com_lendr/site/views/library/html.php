@@ -5,9 +5,8 @@ class LendrViewsLibraryHtml extends JViewHtml
   function render()
   {
 
-    //retrieve task list from model
+    //retrieve list of libraries	 from model
     $libraryModel = new LendrModelsLibrary();
-
     $this->libraries = $libraryModel->listItems();
     
     //display

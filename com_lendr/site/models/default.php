@@ -36,16 +36,21 @@ class LendrModelsDefault extends JModelBase
     return $previous;
   }
 
+  public function get($property, $default = null) 
+  {
+    return isset($this->$property) ? $this->$property : $default;
+  }
+
   /**
-  * Build a query and where and return an object
+  * Build a query, where clause and return an object
   *
   */
-  public function get()
+  public function getItem()
   {
     $db = JFactory::getDBO();
 
-    $query = $this->buildQuery();
-    $this->buildWhere($query);
+    $query = $this->_buildQuery();
+    $this->_buildWhere($query);
     $db->setQuery($query);
 
     $item = $db->loadObject();
@@ -60,8 +65,8 @@ class LendrModelsDefault extends JModelBase
   */
   public function listItems()
   {
-    $query = $this->buildQuery();    
-    $this->buildWhere($query);
+    $query = $this->_buildQuery();    
+    $query = $this->_buildWhere($query);
     
     $list = $this->_getList($query, $this->limitstart, $this->limit);
 

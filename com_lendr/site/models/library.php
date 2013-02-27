@@ -12,16 +12,16 @@ class LendrModelsLibrary extends LendrModelsDefault
 
   function __construct()
   {
+    parent::__construct();      
+
     $app = JFactory::getApplication();
     $this->_library_id = $app->input->get('library_id',null);
     $this->_user_id = $app->input->get('user_id',null);
-
-    parent::__construct();       
   }
 
- function get() 
+ function getItem() 
   {
-    $library = parent::get(); 
+    $library = parent::getItem(); 
 
     $bookModel = new LendrModelsBook();
     $library->books = $bookModel->listItems();
@@ -47,7 +47,7 @@ class LendrModelsLibrary extends LendrModelsDefault
     return $libraries;
   }
 
-  function buildQuery()
+  protected function _buildQuery()
   {
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
@@ -55,17 +55,17 @@ class LendrModelsLibrary extends LendrModelsDefault
     $query->select("l.library_id, l.name, l.description");
     $query->from("#__lendr_libraries as l");
 
-    $query->select("p.bio, p.avatar");
-    $query->leftjoin("#__lendr_profiles as p ON p.user_id = l.user_id");
-
     $query->select("u.username, u.name");
-    $query->leftjoin("#__users as u ON u.id = p.user_id");
+    $query->leftjoin("#__users as u ON u.id = l.user_id");
+
+    $query->select("p.*");
+    $query->leftjoin("#__user_profiles as p on p.user_id = u.id");
 
     return $query;
   }
 
 
-  function buildWhere(&$query)
+  protected function _buildWhere(&$query)
   {
 
     if(is_numeric($this->_user_id)) 
