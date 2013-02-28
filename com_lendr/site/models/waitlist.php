@@ -16,7 +16,7 @@ class LendrModelsWaitlist extends LendrModelsDefault
 
     $app = JFactory::getApplication();
     $this->_waitlist_id = $app->input->get('waitlist_id',null);
-    $this->_user_id = $app->input->get('user_id',null);
+    $this->_user_id = $app->input->get('user_id',JFactory::getUser()->id);
   }
 
  function getItem() 
@@ -24,6 +24,7 @@ class LendrModelsWaitlist extends LendrModelsDefault
    
     $bookModel = new LendrModelsBook();
     $bookModel->set('_waitlist', TRUE);
+    $bookModel->set('_user_id', $this->_user_id);
     $waitlist = $bookModel->listItems();
 
     return $waitlist;

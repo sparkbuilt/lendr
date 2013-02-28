@@ -19,19 +19,36 @@
     <?php } ?>
   </td>
   <td class="small">
-    <?php if($this->book->waitlist_id) { ?>
-    <a href="javascript:void(0);" onclick="cancelRequest(<?php echo $this->book->book_id; ?>);" class="btn btn-danger"><?php echo JText::_('COM_LENDR_CANCEL_REQUEST'); ?></a>
-    <?php } else { ?>
-    <div class="btn-group">
-      <a href="javascript:void(0);" onclick="borrowBookModal(<?php echo $this->book->book_id; ?>);" class="btn"><?php echo JText::_('COM_LENDR_BORROW'); ?></a>
-      <button class="btn dropdown-toggle" data-toggle="dropdown">
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="#"><?php echo JText::_('COM_LENDR_ADD_WISHLIST'); ?></a></li>
-        <li><a href="#"><?php echo JText::_('COM_LENDR_WRITE_REVIEW'); ?></a></li>
-      </ul>
-    </div>
-    <?php } ?>
+    <?php if($this->book->user_id == JFactory::getUser()->id) { ?>
+              <p class="pull-right">
+                <?php if ($this->book->waitlist_id) { ?>
+                    <a href="javascript:void(0);" class="btn btn-large btn-success"><?php echo JText::_('COM_LENDR_LEND_BOOK'); ?></a>
+                <?php } elseif($this->book->lent) { ?>
+                    <a href="javascript:void(0);" class="btn btn-info btn-success"><?php echo JText::_('COM_LENDR_RETURN'); ?></a>
+                <?php } ?>
+             </p>
+            <div class="btn-group pull-right">
+                <a href="javascript:void(0);" class="btn btn-small"><?php echo JText::_('COM_LENDR_VIEW_DETAILS'); ?></a>
+                <a href="javascript:void(0);" class="btn btn-small"><?php echo JText::_('COM_LENDR_DELETE'); ?></a>
+            </div>
+          <?php } else { 
+      
+              if($this->book->waitlist_id && $this->book->user_id == JFactory::getUser()->id) { ?>
+              
+              <a href="javascript:void(0);" onclick="cancelRequest(<?php echo $this->book->book_id; ?>);" class="btn btn-danger"><?php echo JText::_('COM_LENDR_CANCEL_REQUEST'); ?></a>
+              <?php } else { ?>
+              <div class="btn-group">
+                <a href="javascript:void(0);" onclick="borrowBookModal(<?php echo $this->book->book_id; ?>);" class="btn"><?php echo JText::_('COM_LENDR_BORROW'); ?></a>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><?php echo JText::_('COM_LENDR_ADD_WISHLIST'); ?></a></li>
+                  <li><a href="#"><?php echo JText::_('COM_LENDR_WRITE_REVIEW'); ?></a></li>
+                </ul>
+              </div>
+              
+              <?php } 
+          } ?>
   </td>
 </tr>

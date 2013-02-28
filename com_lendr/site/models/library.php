@@ -16,7 +16,7 @@ class LendrModelsLibrary extends LendrModelsDefault
 
     $app = JFactory::getApplication();
     $this->_library_id = $app->input->get('library_id',null);
-    $this->_user_id = $app->input->get('user_id',null);
+    $this->_user_id = $app->input->get('user_id',JFactory::getUser()->id);
   }
 
  function getItem() 
@@ -24,6 +24,7 @@ class LendrModelsLibrary extends LendrModelsDefault
     $library = parent::getItem(); 
 
     $bookModel = new LendrModelsBook();
+    $bookModel->set('_user_id',$this->_user_id);
     $library->books = $bookModel->listItems();
 
     return $library;

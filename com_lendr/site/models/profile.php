@@ -14,17 +14,7 @@ class LendrModelsProfile extends LendrModelsDefault
     $app = JFactory::getApplication();
 
     //If no User ID is set to current logged in user
-    if ( $app->input->get('profile_id') )
-    {
-      $this->_user_id = $app->input->get('profile_id');
-    }
-    if(is_null($this->_user_id))
-    {
-      $user = JFactory::getUser();
-      $this->_user_id = $user->get('id');
-    }
-
-    
+    $this->_user_id = $app->input->get('profile_id', JFactory::getUser()->id);
 
     parent::__construct();       
   }
@@ -48,6 +38,7 @@ class LendrModelsProfile extends LendrModelsDefault
 
   protected function _buildWhere($query)
   {
+    $query->group("u.id");
 
     return $query;
   }

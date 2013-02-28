@@ -40,7 +40,7 @@ class LendrModelsBook extends LendrModelsDefault
     $db = JFactory::getDBO();
     $query = $db->getQuery(TRUE);
 
-    $query->select('b.book_id, b.isbn, b.title, b.author, b.summary, b.pages, 
+    $query->select('b.book_id, b.user_id, b.isbn, b.title, b.author, b.summary, b.pages, 
                     b.publish_date, b.lent, b.lent_date, b.due_date');
     $query->from('#__lendr_books as b');
 
