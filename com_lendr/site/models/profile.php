@@ -18,6 +18,26 @@ class LendrModelsProfile extends LendrModelsDefault
 
     parent::__construct();       
   }
+
+  function getItem()
+  {
+
+    $profile = JFactory::getUser($this->_user_id);
+    $userDetails = JUserHelper::getProfile($this->_user_id);
+    $profile->details =  isset($userDetails->profile) ? $userDetails->profile : array();
+
+    $libraryModel = new LendrModelsLibrary();
+    $libraryModel->set('_user_id',$this->_user_id);
+    $profile->library = $libraryModel->getItem();
+
+    $waitlistModel = new LendrModelsWaitlist();
+    $waitlistModel->set('_waitlist', TRUE);
+    $profile->waitlist = $waitlistModel->getItem();
+
+    $profile->isMine = JFactory::getUser()->id == $profile->id ? TRUE : FALSE;
+
+    return $profile;
+  }
  
   protected function _buildQuery()
   {
@@ -41,26 +61,6 @@ class LendrModelsProfile extends LendrModelsDefault
     $query->group("u.id");
 
     return $query;
-  }
-
-  function getItem()
-  {
-
-    $profile = JFactory::getUser($this->_user_id);
-    $userDetails = JUserHelper::getProfile($this->_user_id);
-    $profile->details =  isset($userDetails->profile) ? $userDetails->profile : array();
-
-    $libraryModel = new LendrModelsLibrary();
-    $libraryModel->set('_user_id',$this->_user_id);
-    $profile->library = $libraryModel->getItem();
-
-    $waitlistModel = new LendrModelsWaitlist();
-    $waitlistModel->set('_waitlist', TRUE);
-    $profile->waitlist = $waitlistModel->getItem();
-
-    $profile->isMine = JFactory::getUser()->id == $profile->id ? TRUE : FALSE;
-
-    return $profile;
   }
 
 }

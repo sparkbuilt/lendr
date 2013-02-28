@@ -84,9 +84,4 @@ class LendrModelsLibrary extends LendrModelsDefault
     return $query;
   }
    
-
-  function populateState()
-  {
-
-  }
 }
