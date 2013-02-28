@@ -14,9 +14,15 @@ class LendrViewsProfileHtml extends JViewHtml
 
       case "profile":
         $this->profile = $profileModel->getItem();
+        
         $this->_addBookView = LendrHelpersView::load('Book','_add','phtml');
+
         $this->_libraryView = LendrHelpersView::load('Library','_library','phtml');
         $this->_libraryView->library = $this->profile->library;
+
+        $this->_waitlistView = LendrHelpersView::load('Waitlist','_waitlist','phtml');
+        $this->_waitlistView->waitlist = $this->profile->waitlist;
+
       break;
 
       case "list":

@@ -63,6 +63,10 @@ class LendrModelsProfile extends LendrModelsDefault
     $libraryModel->set('_user_id',$this->_user_id);
     $profile->library = $libraryModel->getItem();
 
+    $waitlistModel = new LendrModelsWaitlist();
+    $waitlistModel->set('_waitlist', TRUE);
+    $profile->waitlist = $waitlistModel->getItem();
+
     $profile->isMine = JFactory::getUser()->id == $profile->id ? TRUE : FALSE;
 
     return $profile;

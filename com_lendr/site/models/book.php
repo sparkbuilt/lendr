@@ -20,6 +20,8 @@ class LendrModelsBook extends LendrModelsDefault
 
   var $_published   = 1;
 
+  var $_waitlist    = FALSE;
+
 
   function __construct()
   {
@@ -41,6 +43,10 @@ class LendrModelsBook extends LendrModelsDefault
     $query->select('b.book_id, b.isbn, b.title, b.author, b.summary, b.pages, 
                     b.publish_date, b.lent, b.lent_date, b.due_date');
     $query->from('#__lendr_books as b');
+
+    $query->select('w.waitlist_id');
+    $query->leftjoin('#__lendr_waitlists as w on w.book_id = b.book_id');
+
 
     return $query;
   }
@@ -67,6 +73,11 @@ class LendrModelsBook extends LendrModelsDefault
     if(is_numeric($this->_library_id)) 
     {
       $query->where('b.library_id = ' . (int) $this->_library_id);
+    }
+
+    if($this->_waitlist)
+    {
+      $query->where('w.waitlist_id > 0');
     }
 
     $query->where('b.published = ' . (int) $this->_published);

@@ -36,6 +36,7 @@
     </div>
     <div class="tab-pane" id="waitlistTab">
       <h2><?php echo JText::_('COM_LENDR_WAITLIST'); ?></h2>
+      <?php echo $this->_waitlistView->render(); ?>
     </div>
   </div>
 </div>

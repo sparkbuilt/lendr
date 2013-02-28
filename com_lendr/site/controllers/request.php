@@ -1,6 +1,6 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
  
-class LendrControllersRequeset extends JControllerBase
+class LendrControllersRequest extends JControllerBase
 {
   public function execute()
   {

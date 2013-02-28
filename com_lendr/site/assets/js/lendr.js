@@ -5,7 +5,6 @@ jQuery(document).ready(function(){
 //add a book
 function addBook()
 {
-
 	var bookInfo = {};
 	jQuery("#bookForm :input").each(function(idx,ele){
 		bookInfo[jQuery(ele).attr('name')] = jQuery(ele).val();
@@ -51,9 +50,29 @@ function borrowBook()
 		dataType:'JSON',
 		success:function(data)
 		{
-			if ( data.success ){
+			if ( data.success )
+			{
 				jQuery("#borrowBookModal").modal('hide');
-			}else{
+			} else {
+
+			}
+		}
+	});
+}
+
+function cancelRequest(waitlist_id) 
+{
+	jQuery.ajax({
+		url:'index.php?option=com_lendr&controller=delete&format=raw&tmpl=component',
+		type:'POST',
+		data: 'waitlist_id = '+waitlist_id,
+		dataType: 'JSON',
+		success:function(data)
+		{
+			if(data.success)
+			{
+			
+			} else {
 
 			}
 		}

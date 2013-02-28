@@ -1,10 +1,10 @@
 <tr>
   <td>
-    <div class="media">
+    <div class="media" id="book-row-<?php echo $this->book->book_id; ?>">
       <a class="pull-left" href="#">
         <img class="media-object" src="http://covers.openlibrary.org/b/isbn/<?php echo $this->book->isbn; ?>-S.jpg">
       </a>
-      <div id="book-row-<?php echo $this->book->book_id; ?>" class="media-body">
+      <div class="media-body">
         <h4 class="media-heading"><?php echo $this->book->title; ?></h4>
         <span class="muted"><?php echo $this->book->author; ?></span>
         <p><?php echo $this->book->summary; ?></p>
@@ -12,9 +12,16 @@
     </div>
   </td>
   <td class="small">
-    <span class="label label-<?php echo $this->book->lent ? 'warning' : 'success'; ?>"><?php echo $this->book->lent ? JText::_('COM_LENDR_LENT') : JText::_('COM_LENDR_AVAILABLE'); ?></span>
+    <?php if($this->book->waitlist_id) { ?>
+      <span class="label label-warning"><?php echo JText::_('COM_LENDR_REQUESTED'); ?></span>
+    <?php } else { ?>
+      <span class="label label-<?php echo $this->book->lent ? 'warning' : 'success'; ?>"><?php echo $this->book->lent ? JText::_('COM_LENDR_LENT') : JText::_('COM_LENDR_AVAILABLE'); ?></span>
+    <?php } ?>
   </td>
   <td class="small">
+    <?php if($this->book->waitlist_id) { ?>
+    <a href="javascript:void(0);" onclick="cancelRequest(<?php echo $this->book->book_id; ?>);" class="btn btn-danger"><?php echo JText::_('COM_LENDR_CANCEL_REQUEST'); ?></a>
+    <?php } else { ?>
     <div class="btn-group">
       <a href="javascript:void(0);" onclick="borrowBookModal(<?php echo $this->book->book_id; ?>);" class="btn"><?php echo JText::_('COM_LENDR_BORROW'); ?></a>
       <button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -25,5 +32,6 @@
         <li><a href="#"><?php echo JText::_('COM_LENDR_WRITE_REVIEW'); ?></a></li>
       </ul>
     </div>
+    <?php } ?>
   </td>
 </tr>
