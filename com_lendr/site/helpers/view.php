@@ -13,7 +13,7 @@ class LendrHelpersView
 
         // Register the layout paths for the view
 	    $paths = new SplPriorityQueue;
-	    $paths->insert(JPATH_COMPONENT . '/views/' . $viewName . '/tmpl', 'normal');
+	    $paths->insert(JPATH_COMPONENT . '/views/' . strtolower($viewName) . '/tmpl', 'normal');
 	 
 	    $viewClass  = 'LendrViews' . ucfirst($viewName) . ucfirst($viewFormat);
 	    $modelClass = 'LendrModels' . ucfirst($viewName);
