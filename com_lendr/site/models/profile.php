@@ -34,6 +34,9 @@ class LendrModelsProfile extends LendrModelsDefault
     $waitlistModel->set('_waitlist', TRUE);
     $profile->waitlist = $waitlistModel->getItem();
 
+    $wishlistModel = new LendrModelsWishlist();
+    $profile->wishlist = $wishlistModel->listItems();
+
     $profile->isMine = JFactory::getUser()->id == $profile->id ? TRUE : FALSE;
 
     return $profile;
@@ -47,10 +50,10 @@ class LendrModelsProfile extends LendrModelsDefault
     $query->select("u.id, u.username, u.name, u.email, u.registerDate");
     $query->from("#__users as u");
 
-    $query->select("COUNT(b.book_id) as totalBooks");
+    $query->select("COUNT(DISTINCT(b.book_id)) as totalBooks");
     $query->leftjoin("#__lendr_books as b on b.user_id = u.id");
 
-    $query->select("COUNT(r.review_id) as totalReviews");
+    $query->select("COUNT(DISTINCT(r.review_id)) as totalReviews");
     $query->leftjoin("#__lendr_reviews as r on r.user_id = u.id");
 
     return $query;

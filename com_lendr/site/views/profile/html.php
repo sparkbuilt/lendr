@@ -10,6 +10,8 @@ class LendrViewsProfileHtml extends JViewHtml
     //retrieve task list from model
     $profileModel = new LendrModelsProfile();
 
+    $this->_modalMessage = LendrHelpersView::load('Profile','_message','phtml');
+
     switch($layout) {
 
       case "profile":
@@ -22,6 +24,9 @@ class LendrViewsProfileHtml extends JViewHtml
 
         $this->_waitlistView = LendrHelpersView::load('Waitlist','_waitlist','phtml');
         $this->_waitlistView->waitlist = $this->profile->waitlist;
+
+        $this->_wishlistView = LendrHelpersView::load('Wishlist','_wishlist','phtml');
+        $this->_wishlistView->wishlist = $this->profile->wishlist;
 
       break;
 

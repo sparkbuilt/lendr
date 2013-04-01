@@ -33,6 +33,7 @@
     </div>
     <div class="tab-pane" id="wishlistTab">
       <h2><?php echo JText::_('COM_LENDR_WISHLIST'); ?></h2>
+      <?php echo $this->_wishlistView->render(); ?>
     </div>
     <div class="tab-pane" id="waitlistTab">
       <h2><?php echo JText::_('COM_LENDR_WAITLIST'); ?></h2>
@@ -43,3 +44,4 @@
 </div>
 
 <?php echo $this->_addBookView->render(); ?>
+<?php echo $this->_modalMessage->render(); ?>

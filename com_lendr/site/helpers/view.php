@@ -37,4 +37,17 @@ class LendrHelpersView
 
 		return $view;
 	}
+
+	function getHtml($view, $layout, $item, $data)
+	{
+		$objectView = LendrHelpersView::load($view, $layout, 'phtml');
+  		$objectView->$item = $data;
+
+  		ob_start();
+  		echo $objectView->render();
+  		$html = ob_get_contents();
+  		ob_clean();
+
+  		return $html;
+	}
 }

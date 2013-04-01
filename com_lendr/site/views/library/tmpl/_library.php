@@ -9,8 +9,11 @@
 	<tbody id="book-list">
 		<?php for($i=0, $n = count($this->library->books);$i<$n;$i++) { 
 		        $this->_bookListView->book = $this->library->books[$i];
+
 		        echo $this->_bookListView->render();
 		} ?>
 	</tbody>
 </table>
 <?php echo $this->_borrowBookView->render(); ?>
+<?php echo $this->_lendBookView->render(); ?>
+<?php echo $this->_returnBookView->render(); ?>

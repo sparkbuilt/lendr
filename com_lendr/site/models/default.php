@@ -19,8 +19,7 @@ class LendrModelsDefault extends JModelBase
   }
 
   public function store($data=null)
-  {
-
+  {    
     $data = $data ? $data : JRequest::get('post');
     $row = JTable::getInstance($data['table'],'Table');
 
@@ -44,7 +43,6 @@ class LendrModelsDefault extends JModelBase
         return false;
     }
  
-    // Store the web link table to the database
     if (!$row->store())
     {
         return false;

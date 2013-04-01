@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `#__lendr_reviews` (
   `review_id` int(11) NOT NULL AUTO_INCREMENT,
   `book_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `review` text DEFAULT NULL,
   `rating` varchar(55) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
