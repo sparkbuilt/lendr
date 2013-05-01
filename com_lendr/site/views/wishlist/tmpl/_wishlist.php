@@ -2,6 +2,7 @@
 	<tbody id="book-list">
 		<?php for($i=0, $n = count($this->wishlist);$i<$n;$i++) { 
 		        $this->_bookListView->book = $this->wishlist[$i];
+		        $this->_bookListView->type = 'wishlist';
 		        echo $this->_bookListView->render();
 		} ?>
 	</tbody>

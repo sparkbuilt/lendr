@@ -175,15 +175,28 @@ function cancelRequest(waitlist_id)
 	jQuery.ajax({
 		url:'index.php?option=com_lendr&controller=delete&format=raw&tmpl=component',
 		type:'POST',
-		data: 'waitlist_id = '+waitlist_id,
+		data: 'waitlist_id='+waitlist_id,
 		dataType: 'JSON',
 		success:function(data)
 		{
+			alert(data.msg);
+		}
+	});
+}
+
+function deleteBook(book_id,type) 
+{
+	jQuery.ajax({
+		url:'index.php?option=com_lendr&controller=delete&format=raw&tmpl=component',
+		type:'POST',
+		data: 'book_id='+book_id+'&type='+type,
+		dataType: 'JSON',
+		success:function(data)
+		{
+			alert(data.msg);
 			if(data.success)
 			{
-			
-			} else {
-
+				jQuery("tr#bookRow"+book_id).hide();
 			}
 		}
 	});

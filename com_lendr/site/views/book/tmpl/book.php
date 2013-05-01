@@ -19,13 +19,19 @@
               <?php } else { ?>
               <div class="btn-group">
                 <a href="javascript:void(0);" onclick="borrowBookModal(<?php echo $this->book->book_id; ?>);" class="btn"><?php echo JText::_('COM_LENDR_BORROW'); ?></a>
-                <button class="btn dropdown-toggle" data-toggle="dropdown">
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="javascript:void(0);" onclick="addToWishlist('<?php echo $this->book->book_id; ?>');"><?php echo JText::_('COM_LENDR_ADD_WISHLIST'); ?></a></li>
-                  <li><a href="#newReviewModal" data-toggle="modal"><?php echo JText::_('COM_LENDR_WRITE_REVIEW'); ?></a></li>
-                </ul>
+                <?php if($this->params->get('new_reviews') || $this->params->get('new_wishlists')): ?>
+                  <button class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <?php if($this->params->get('new_wishlists') == 1 ): ?>
+                      <li><a href="javascript:void(0);" onclick="addToWishlist('<?php echo $this->book->book_id; ?>');"><?php echo JText::_('COM_LENDR_ADD_WISHLIST'); ?></a></li>
+                    <?php endif; ?>
+                    <?php if($this->params->get('new_reviews') == 1 ): ?>
+                      <li><a href="#newReviewModal" data-toggle="modal"><?php echo JText::_('COM_LENDR_WRITE_REVIEW'); ?></a></li>
+                    <?php endif; ?>
+                  </ul>
+                <?php endif; ?>
               </div>
               
               <?php } 
@@ -61,7 +67,10 @@
       </p>
     </div>
     <div class="tab-pane" id="reviewsTab">
-      <a href="#newReviewModal" role="button" data-toggle="modal" class="btn pull-right"><i class="icon icon-star"></i> <?php echo JText::_('COM_LENDR_ADD_REVIEW'); ?></a>
+      <?php if($this->params->get('new_reviews') == 1 ): ?>
+        <a href="#newReviewModal" role="button" data-toggle="modal" class="btn pull-right"><i class="icon icon-star"></i> <?php echo JText::_('COM_LENDR_ADD_REVIEW'); ?></a>
+        <?php echo $this->_addReviewView->render(); ?>
+      <?php endif; ?>
       <h2><?php echo JText::_('COM_LENDR_REVIEWS'); ?></h2>
       <?php echo $this->_reviewsView->render(); ?>
     </div>
@@ -69,7 +78,6 @@
 </div>
 </div>
 
-<?php echo $this->_addReviewView->render(); ?>
 <?php echo $this->_lendBookView->render(); ?>
 <?php echo $this->_returnBookView->render(); ?>
 <?php echo $this->_modalMessage->render(); ?>

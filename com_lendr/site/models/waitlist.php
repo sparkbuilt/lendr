@@ -29,4 +29,45 @@ class LendrModelsWaitlist extends LendrModelsDefault
 
     return $waitlist;
   }
+
+  /**
+  * Delete a book from a waitlist
+  * @param int      ID of the book to delete
+  * @return boolean True if successfully deleted
+  */
+  public function delete($id = null)
+  {
+    $app  = JFactory::getApplication();
+    $id   = $id ? $id : $app->input->get('waitlist_id');
+
+    if (!$id)
+    {
+      if ($book_id = $app->input->get('book_id')) 
+      {
+        $db = JFactory::getDbo();
+        $user = JFactory::getUser();
+        $query = $db->getQuery(true);
+        $query->delete()
+            ->from('#__lendr_waitlists')
+            ->where('user_id = ' . $user->id)
+            ->where('book_id = ' . $book_id);
+        $db->setQuery($query);
+        if($db->query()) {
+          return true;
+        }
+      } 
+
+    } else {
+      $waitlist = JTable::getInstance('Waitlist','Table');
+      $waitlist->load($id);
+
+      if ($waitlist->delete()) 
+      {
+        return true;
+      }      
+    }
+
+    return false;
+  }
+
 }

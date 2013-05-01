@@ -9,6 +9,8 @@ class LendrViewsBookPhtml extends JViewHTML
 
     function render()
     {
+    	$this->params = JComponentHelper::getParams('com_lendr');
+    	
     	return parent::render();
  	}
 }

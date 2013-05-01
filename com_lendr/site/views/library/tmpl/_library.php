@@ -9,7 +9,7 @@
 	<tbody id="book-list">
 		<?php for($i=0, $n = count($this->library->books);$i<$n;$i++) { 
 		        $this->_bookListView->book = $this->library->books[$i];
-
+		        $this->_bookListView->type = 'library';
 		        echo $this->_bookListView->render();
 		} ?>
 	</tbody>

@@ -95,11 +95,21 @@ class LendrModelsBook extends LendrModelsDefault
       $query->where('b.library_id = ' . (int) $this->_library_id);
     }
 
+    if($this->_waitlist)
+    {
+      $query->where('w.waitlist_id <> ""');
+    }
+
     $query->where('b.published = ' . (int) $this->_published);
 
     return $query;
   }
 
+  /**
+  * Lend the book
+  * @param    array   Data array of book
+  * @return   object  The book object loaned
+  */
   public function lend($data = null)
   {
     $data = isset($data) ? $data : JRequest::get('post');
@@ -128,4 +138,26 @@ class LendrModelsBook extends LendrModelsDefault
 
   }
 
+  /**
+  * Delete a book
+  * @param int      ID of the book to delete
+  * @return boolean True if successfully deleted
+  */
+  public function delete($id = null)
+  {
+    $app  = JFactory::getApplication();
+    $id   = $id ? $id : $app->input->get('book_id');
+
+    $book = JTable::getInstance('Book','Table');
+    $book->load($id);
+
+    $book->published = 0;
+
+    if($book->store()) 
+    {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -7,6 +7,16 @@ class LendrControllersDefault extends JControllerBase
 
     // Get the application
     $app = $this->getApplication();
+
+    $params = JComponentHelper::getParams('com_lendr');
+    if ($params->get('required_account') == 1) 
+    {
+        $user = JFactory::getUser();
+        if ($user->get('guest'))
+        {
+            $app->redirect('index.php',JText::_('COM_LENDR_ACCOUNT_REQUIRED_MSG'));
+        }
+    }
  
     // Get the document object.
     $document     = JFactory::getDocument();
