@@ -44,6 +44,7 @@
 
 		<files folder="admin">
 			<folder>controllers</folder>
+			<folder>helpers</folder>
 			<folder>languages</folder>
 			<folder>models</folder>
 			<folder>views</folder>
