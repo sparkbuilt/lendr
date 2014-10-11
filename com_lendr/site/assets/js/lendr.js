@@ -2,7 +2,7 @@
 function addBook()
 {
 	var bookInfo = {};
-	jQuery("#bookForm :input").each(function(idx,ele){
+	jQuery("#bookForm *[name]").each(function(idx,ele){
 		bookInfo[jQuery(ele).attr('name')] = jQuery(ele).val();
 	});
 
