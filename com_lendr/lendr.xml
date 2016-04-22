@@ -38,8 +38,8 @@
 	<administration>
 		<menu link="option=com_lendr" img="components/com_lendr/assets/images/lendr_icon.png">COM_LENDR</menu>
 		<submenu>
-			<menu view="settings" img="components/com_lendr/assets/images/settings_icon.png" 
-				alt="LENDR/Settings">COM_LENDR_SETTINGS</menu>
+			<menu view="statistics" img="components/com_lendr/assets/images/statistics_icon.png" 
+				alt="LENDR/Statistics">COM_LENDR_STATISTICS</menu>
 		</submenu>
 
 		<files folder="admin">
