@@ -20,12 +20,12 @@ LendrHelpersStyle::load();
 //application
 $app = JFactory::getApplication();
  
-// Require specific controller if requested
-$controller = $app->input->get('controller','default');
 
-// Create the controller
-$classname  = 'LendrControllers'.ucwords($controller);
-$controller = new $classname();
+// It will look for controller.php file in component root directory
+$controller = JControllerLegacy::getInstance('Cobalt');
+
+// Now you can task like this task=controller.action
+$controller->execute(JFactory::getApplication()->input->get('task'));
  
 // Perform the Request task
 $controller->execute();
